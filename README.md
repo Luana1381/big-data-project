@@ -8,9 +8,10 @@ Sono stati sviluppati tre database appartenenti a modelli differenti:
 
 1. Database relazionale (SQLite)
 2. Database NoSQL a grafo (Neo4j)
-3. Database NoSQL documentale (Elasticsearch)
+3. Database NoSQL orientato ai documenti (Elasticsearch)
 
-Per ciascun database sono stati progettati lo schema dei dati, inseriti dati di esempio e implementate le query richieste dalla traccia d'esame.
+Per ciascun database sono stati progettati lo schema dei dati, inseriti dati di esempio e implementate le query richieste dalla traccia d'esame.  
+Le prime due implementazioni derivano da tracce assegnate dal docente, mentre la terza rappresenta una proposta autonoma sviluppata utilizzando Elasticsearch.  
 
 ---
 
@@ -140,7 +141,9 @@ Il progetto dimostra la capacità di:
 
 ## Autore
 
-**Luana Fasiello** e **Sofia Pascali**
+**Luana Fasiello**  
+**Sofia Pascali**
 
 Corso di Laurea Magistrale in Data Science  
-Università del Salento
+Università del Salento  
+Anno Accademico 2025/2026
