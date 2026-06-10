@@ -21,7 +21,8 @@ Le tabelle implementate sono:
 - LIBRO_AUTORE
 - PRESTITO
 
-Le relazioni sono state realizzate mediante chiavi primarie e chiavi esterne.
+Le relazioni sono state realizzate mediante chiavi primarie e chiavi esterne.  
+Il database è stato progettato seguendo il modello relazionale. Gli studenti possono effettuare prestiti di libri, mentre la relazione tra libri e autori è stata modellata tramite la tabella associativa LIBRO_AUTORE, necessaria per rappresentare correttamente una relazione molti-a-molti.
 
 ## File del progetto
 
@@ -35,11 +36,13 @@ Le relazioni sono state realizzate mediante chiavi primarie e chiavi esterne.
 
 ### Query 1
 
-Visualizzare i libri attualmente in prestito con le informazioni dello studente.
+"Visualizzare i libri attualmente in prestito con le informazioni dello studente".
+La prima query utilizza una JOIN tra le tabelle PRESTITO, STUDENTE e LIBRO per visualizzare i libri attualmente in prestito e i relativi studenti.
 
 ### Query 2
 
-Individuare gli autori che hanno scritto più di un libro.
+"Individuare gli autori che hanno scritto più di un libro".
+La seconda query utilizza aggregazioni e clausole GROUP BY per individuare gli autori che hanno scritto più di un libro.
 
 ## Tecnologie utilizzate
 
@@ -47,3 +50,13 @@ Individuare gli autori che hanno scritto più di un libro.
 - Python
 - DBeaver
 - GitHub
+
+## Obiettivi della Traccia
+
+Il progetto dimostra l'utilizzo di:
+
+- progettazione di database relazionali;
+- chiavi primarie e chiavi esterne;
+- relazioni uno-a-molti e molti-a-molti;
+- interrogazioni SQL;
+- integrazione tra SQLite e Python.
