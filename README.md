@@ -2,7 +2,7 @@
 
 ## Introduzione
 
-Questo progetto è stato sviluppato nell’ambito del corso di Big Data del Corso di Laurea Magistrale in Data Science presso l’Università del Salento.
+Questo progetto è stato sviluppato nell’ambito del corso di **Analisi Dati & Big Data** del Corso di Laurea Magistrale in Data Science presso l’Università del Salento.
 
 L’obiettivo del lavoro è quello di applicare i principali concetti affrontati durante il corso attraverso la progettazione, l’implementazione e l’interrogazione di differenti tipologie di database. In particolare, il progetto prevede la realizzazione di tre soluzioni basate su modelli di gestione dei dati differenti: un database relazionale, un database NoSQL a grafo e un database NoSQL orientato ai documenti.
 
