@@ -1,7 +1,6 @@
 import sqlite3
 
-conn = sqlite3.connect("biblioteca.db")
-
+conn = sqlite3.connect("relational_biblioteca/biblioteca.db")
 cursor = conn.cursor()
 
 query1 = """
