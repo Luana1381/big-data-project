@@ -96,7 +96,19 @@ La cartella `relational_biblioteca` contiene i seguenti file:
 - `insert_data.sql` → inserimento dei dati di esempio;
 - `queries.sql` → raccolta delle query SQL richieste dalla traccia;
 - `biblioteca.py` → script Python utilizzato per eseguire le interrogazioni sul database;
-- `biblioteca.db` → database SQLite contenente i dati.
+- `biblioteca.db` → database SQLite contenente i dati; 
+- `populate_large_dataset.py` → script Python per il popolamento esteso del database.
+
+
+### Materiale aggiuntivo
+
+Per documentare il lavoro svolto sono stati inoltre inclusi:
+
+- `diagramma_ER_biblioteca.png`, contenente il diagramma Entity-Relationship del database;
+- `output_query/query1_libri_in_prestito.csv`, contenente l'output della prima interrogazione;
+- `output_query/query2_autori_piu_libri.csv`, contenente l'output della seconda interrogazione.
+
+In una fase iniziale il sistema è stato sviluppato utilizzando un dataset ridotto, utile per verificare la correttezza dello schema relazionale e delle query implementate. Successivamente il database è stato ampliato mediante uno script Python dedicato, generando un dataset più realistico composto da decine di studenti, libri, autori e prestiti, al fine di testare il corretto funzionamento delle interrogazioni su una quantità maggiore di dati.
 
 ---
 
@@ -114,35 +126,49 @@ I dati inseriti consentono di simulare il funzionamento reale di una biblioteca 
 
 ---
 
+## Evoluzione del popolamento
+
+Durante la fase iniziale di sviluppo il database è stato popolato con un numero limitato di record di esempio. Questa scelta ha permesso di verificare progressivamente la correttezza dello schema relazionale, delle relazioni tra le tabelle e delle query richieste dalla traccia.
+
+Una volta completata e verificata l'implementazione del sistema, il database è stato ampliato mediante uno script Python dedicato (`populate_large_dataset.py`) che genera automaticamente un dataset più esteso e realistico.
+
+L'ampliamento del dataset ha consentito di testare il corretto funzionamento delle interrogazioni su una quantità maggiore di dati e di simulare uno scenario più vicino a un contesto reale di gestione bibliotecaria.
+
+Il popolamento finale del database comprende:
+
+- 40 studenti;
+- 60 libri;
+- 25 autori;
+- 90 associazioni libro-autore;
+- 120 prestiti.
+
+Complessivamente il database contiene 335 record distribuiti tra le diverse tabelle.
+
+---
+
 ## Query implementate
 
 Nel progetto sono state sviluppate le query richieste dalla traccia assegnata.
 
 ### Query 1 - Libri attualmente in prestito
 
-La prima interrogazione consente di visualizzare i libri che risultano attualmente in prestito insieme alle informazioni dello studente che li ha richiesti.
+La prima interrogazione consente di visualizzare tutti i libri che risultano attualmente in prestito, associando a ciascun prestito le informazioni relative al libro e allo studente che lo ha richiesto.
 
-Per ottenere il risultato vengono utilizzate operazioni di JOIN tra le tabelle:
+La query utilizza operazioni di JOIN tra le tabelle PRESTITO, LIBRO e STUDENTE e seleziona esclusivamente i prestiti non ancora conclusi, ossia quelli per i quali la data di restituzione effettiva risulta assente.
 
-- PRESTITO;
-- STUDENTE;
-- LIBRO.
-
-La query permette di individuare rapidamente chi ha preso in prestito un determinato libro.
+L'esecuzione della query sul dataset esteso restituisce numerosi record e dimostra il corretto funzionamento delle relazioni tra le tabelle del database.
 
 ---
 
 ### Query 2 - Autori con più di un libro
 
-La seconda interrogazione individua gli autori che hanno scritto più di un libro presente nel catalogo.
+La seconda interrogazione permette di individuare gli autori che hanno scritto più di un libro presente nel catalogo.
 
-Per ottenere il risultato vengono utilizzate:
+La query utilizza la tabella associativa LIBRO_AUTORE per contare il numero di opere attribuite a ciascun autore e restituisce solamente quelli con almeno due libri associati.
 
-- operazioni di aggregazione;
-- clausole GROUP BY;
-- conteggi tramite COUNT.
+I risultati vengono ordinati in ordine decrescente rispetto al numero di libri pubblicati, consentendo di identificare immediatamente gli autori maggiormente rappresentati all'interno del catalogo.
 
-La query permette di analizzare la produzione degli autori presenti nel database.
+L'esecuzione della query sul dataset esteso produce un insieme significativo di risultati e conferma la corretta implementazione della relazione molti-a-molti tra libri e autori.
 
 ---
 

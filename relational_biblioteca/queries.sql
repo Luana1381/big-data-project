@@ -1,5 +1,18 @@
+-- Verifica popolamento database
+
+SELECT 'STUDENTE' AS tabella, COUNT(*) AS numero_record FROM STUDENTE
+UNION ALL
+SELECT 'LIBRO', COUNT(*) FROM LIBRO
+UNION ALL
+SELECT 'AUTORE', COUNT(*) FROM AUTORE
+UNION ALL
+SELECT 'LIBRO_AUTORE', COUNT(*) FROM LIBRO_AUTORE
+UNION ALL
+SELECT 'PRESTITO', COUNT(*) FROM PRESTITO;
+
+
 -- Query 1
--- Elencare i libri attualmente in prestito con i dati dello studente che li possiede.
+-- Visualizzare i libri attualmente in prestito con le informazioni dello studente
 
 SELECT
     l.id_libro,
@@ -22,7 +35,7 @@ WHERE p.data_effettiva_restituzione IS NULL;
 
 
 -- Query 2
--- Trovare gli autori che hanno scritto più libri presenti in biblioteca.
+-- Individuare gli autori che hanno scritto più di un libro
 
 SELECT
     a.id_autore,
