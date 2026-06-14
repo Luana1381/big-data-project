@@ -16,25 +16,20 @@ Grazie a Neo4j è possibile esplorare facilmente collaborazioni professionali, r
 
 Il database è stato progettato seguendo il paradigma dei **Property Graph**, modello utilizzato da Neo4j.
 
-In questo modello:
+In questo paradigma:
 
 - le entità vengono rappresentate come nodi;
-- i collegamenti tra le entità vengono rappresentati come relazioni;
-- sia i nodi sia le relazioni possono possedere proprietà descrittive.
+- le connessioni vengono rappresentate come relazioni orientate;
+- nodi e relazioni possono possedere proprietà descrittive;
+- le interrogazioni vengono effettuate attraversando direttamente le relazioni presenti nel grafo.
 
 La struttura progettata consente di rappresentare il dominio cinematografico in maniera intuitiva e facilmente interrogabile mediante il linguaggio Cypher.
 
 ---
 
-## Nodi del grafo
+## Struttura del Knowledge Graph
 
-I nodi principali del grafo sono:
-
-- FILM
-- PERSONA
-- GENERE
-
----
+Il grafo è composto da tre tipologie principali di nodi.
 
 ### FILM
 
@@ -47,81 +42,76 @@ Per ogni film vengono memorizzate le seguenti proprietà:
 - durata;
 - lingua originale.
 
-Ogni film può essere associato a uno o più generi e può coinvolgere più persone con ruoli differenti.
-
----
+Ogni film può essere associato a uno o più generi cinematografici e può coinvolgere numerose persone con ruoli differenti.
 
 ### PERSONA
 
-I nodi di tipo PERSONA rappresentano gli individui coinvolti nella realizzazione dei film.
+I nodi di tipo PERSONA rappresentano gli individui coinvolti nella produzione cinematografica.
 
-Per ogni persona vengono memorizzate le seguenti proprietà:
+Per ogni persona vengono memorizzate:
 
 - nome;
 - cognome;
 - data di nascita;
 - nazionalità.
 
-Una stessa persona può partecipare a diversi film e ricoprire ruoli differenti nel corso della propria carriera.
-
----
+Una stessa persona può partecipare a più film e può essere collegata a diverse opere mediante differenti relazioni.
 
 ### GENERE
 
-I nodi di tipo GENERE rappresentano le categorie cinematografiche a cui appartengono i film.
+I nodi di tipo GENERE rappresentano le categorie cinematografiche.
 
-Ogni genere viene identificato dal proprio nome, ad esempio:
-
-- fantascienza;
-- thriller;
-- commedia;
-- drammatico.
-
-L'introduzione di nodi specifici per i generi consente di effettuare interrogazioni mirate e analizzare le relazioni tra film appartenenti alla stessa categoria.
+Ogni genere viene identificato dal proprio nome e permette di classificare i film in base alle loro caratteristiche narrative e stilistiche.
 
 ---
 
-## Relazioni del grafo
+## Relazioni implementate
 
 Le connessioni tra i nodi vengono rappresentate tramite relazioni direzionali.
-
-Le relazioni implementate sono le seguenti.
 
 ### HA_RECITATO_IN
 
 La relazione **HA_RECITATO_IN** collega una persona a un film nel quale ha partecipato come attore o attrice.
 
-Questa relazione permette di individuare rapidamente tutti i film a cui ha preso parte un determinato interprete e, viceversa, tutti gli attori coinvolti in una specifica produzione cinematografica.
-
----
+Essa consente di individuare rapidamente tutti i film interpretati da una determinata persona e, viceversa, tutti gli attori coinvolti in una specifica produzione cinematografica.
 
 ### HA_DIRETTO
 
 La relazione **HA_DIRETTO** collega una persona a un film del quale è stata regista.
 
-Attraverso questa relazione è possibile analizzare la filmografia di un regista e individuare le collaborazioni sviluppate nel corso della sua carriera.
-
----
+Questa relazione permette di ricostruire la filmografia di un regista e di analizzare le collaborazioni sviluppate nel corso della sua carriera.
 
 ### APPARTIENE_A
 
 La relazione **APPARTIENE_A** collega un film al relativo genere cinematografico.
 
-Grazie a questa connessione è possibile classificare le opere e realizzare interrogazioni basate sulle categorie cinematografiche.
+Grazie a questa connessione è possibile classificare le opere cinematografiche e realizzare interrogazioni basate sulle categorie di appartenenza.
 
 ---
 
 ## Popolamento del grafo
 
-Il grafo è stato popolato con dati di esempio relativi a:
+In una prima fase il progetto è stato sviluppato utilizzando un dataset ridotto, costituito da pochi film, persone e generi cinematografici.
 
-- film;
-- attori;
-- registi;
-- generi cinematografici;
-- relazioni tra persone e film.
+Questo primo popolamento aveva lo scopo di verificare la correttezza della modellazione e il funzionamento delle interrogazioni richieste dalla traccia.
 
-I dati inseriti consentono di simulare un piccolo archivio cinematografico e di verificare il corretto funzionamento delle interrogazioni richieste dalla traccia.
+Successivamente il grafo è stato ampliato in modo significativo per simulare un archivio cinematografico più realistico e per verificare le prestazioni delle query su una quantità maggiore di dati.
+
+Il dataset finale contiene:
+
+- 40 nodi FILM;
+- 45 nodi PERSONA;
+- 20 nodi GENERE;
+
+per un totale di **105 nodi**.
+
+Le relazioni create tra i nodi sono complessivamente **113**, distribuite tra:
+
+- HA_RECITATO_IN;
+- HA_DIRETTO;
+- APPARTIENE_A.
+
+L'ampliamento del dataset ha consentito di verificare il corretto funzionamento delle interrogazioni anche in presenza di un numero elevato di connessioni tra le entità.
 
 ---
 
@@ -129,33 +119,37 @@ I dati inseriti consentono di simulare un piccolo archivio cinematografico e di 
 
 La cartella `graph_film` contiene i seguenti file:
 
-- `graph.cypher` → creazione dei nodi e delle relazioni del grafo;
+- `graph.cypher` → creazione e popolamento del Knowledge Graph;
 - `queries.cypher` → implementazione delle query richieste dalla traccia;
-- `README.md` → documentazione del progetto.
+- `README.md` → documentazione del progetto;
+- `output_query/query1_film_dicaprio.csv` → risultato della prima interrogazione;
+- `output_query/query2_collaboratori_nolan.csv` → risultato della seconda interrogazione.
 
 ---
 
 ## Query implementate
 
-Nel progetto sono state sviluppate le query richieste dalla traccia assegnata.
+Nel progetto sono state sviluppate le interrogazioni richieste dalla traccia assegnata.
 
 ### Query 1 - Film interpretati da un attore
 
 La prima interrogazione consente di individuare tutti i film in cui ha recitato un determinato attore.
 
-La query attraversa la relazione **HA_RECITATO_IN**, partendo dal nodo PERSONA e raggiungendo i nodi FILM collegati.
+Nel caso di test è stato utilizzato Leonardo DiCaprio.
 
-Questo tipo di interrogazione evidenzia uno dei principali vantaggi dei database a grafo: la possibilità di seguire direttamente le connessioni tra entità senza dover effettuare complesse operazioni di JOIN.
+La query attraversa la relazione **HA_RECITATO_IN**, partendo dal nodo PERSONA e raggiungendo tutti i nodi FILM collegati.
 
----
+Questo tipo di interrogazione evidenzia uno dei principali vantaggi dei database a grafo: la possibilità di seguire direttamente le connessioni tra entità senza dover effettuare operazioni di JOIN.
 
 ### Query 2 - Collaborazioni con un regista
 
 La seconda interrogazione consente di individuare le persone che hanno collaborato con un determinato regista.
 
-La query sfrutta le relazioni **HA_DIRETTO** e **HA_RECITATO_IN** per individuare gli attori che hanno partecipato ai film diretti da uno specifico regista.
+Nel caso di test è stato utilizzato Christopher Nolan.
 
-Attraverso questa interrogazione è possibile analizzare le collaborazioni professionali presenti nel grafo e individuare reti di relazioni tra persone e opere cinematografiche.
+La query sfrutta le relazioni **HA_DIRETTO** e **HA_RECITATO_IN** per individuare gli attori che hanno partecipato ai film diretti dal regista selezionato.
+
+L'interrogazione permette inoltre di calcolare il numero di collaborazioni e di visualizzare l'elenco dei film condivisi.
 
 ---
 
@@ -163,9 +157,9 @@ Attraverso questa interrogazione è possibile analizzare le collaborazioni profe
 
 Le interrogazioni sono state sviluppate utilizzando **Cypher**, il linguaggio di query di Neo4j.
 
-Cypher consente di descrivere in modo intuitivo nodi, relazioni e percorsi attraverso una sintassi che richiama la struttura stessa del grafo.
+Cypher consente di descrivere nodi, relazioni e percorsi attraverso una sintassi intuitiva che richiama direttamente la struttura del grafo.
 
-Grazie a questo linguaggio è possibile effettuare ricerche, esplorare connessioni e analizzare le relazioni presenti nel database in maniera semplice ed efficace.
+Grazie a questo linguaggio è possibile effettuare ricerche, esplorare connessioni e analizzare relazioni tra entità in modo semplice ed efficiente.
 
 ---
 
@@ -176,6 +170,7 @@ Grazie a questo linguaggio è possibile effettuare ricerche, esplorare connessio
 - Linguaggio Cypher
 - Git
 - GitHub
+- Visual Studio Code
 
 ---
 
@@ -184,13 +179,14 @@ Grazie a questo linguaggio è possibile effettuare ricerche, esplorare connessio
 Questa parte del progetto dimostra la capacità di:
 
 - progettare un database a grafo;
-- modellare entità mediante nodi;
-- rappresentare collegamenti tramite relazioni;
 - utilizzare il paradigma Property Graph;
+- modellare entità tramite nodi;
+- rappresentare collegamenti tramite relazioni;
 - creare e popolare un Knowledge Graph;
-- interrogare il database mediante linguaggio Cypher;
+- interrogare il database mediante Cypher;
 - esplorare connessioni tra entità correlate;
-- rappresentare dati fortemente relazionati in modo efficiente.
+- analizzare collaborazioni professionali all'interno di un dominio complesso;
+- gestire dataset di dimensioni superiori rispetto all'esempio iniziale.
 
 ---
 
@@ -198,6 +194,6 @@ Questa parte del progetto dimostra la capacità di:
 
 La soluzione sviluppata evidenzia le principali caratteristiche dei database a grafo e mostra come Neo4j possa essere utilizzato per modellare domini caratterizzati da un elevato numero di relazioni tra le informazioni.
 
-Nel contesto cinematografico, il paradigma a grafo consente di rappresentare in modo naturale i collegamenti tra film, persone e generi, facilitando l'esplorazione delle collaborazioni professionali e l'analisi delle connessioni presenti nel sistema.
+Nel contesto cinematografico il paradigma a grafo consente di rappresentare in modo naturale i collegamenti tra film, persone e generi, facilitando l'esplorazione delle collaborazioni professionali e l'analisi delle connessioni presenti nel sistema.
 
-L'utilizzo di Neo4j e del linguaggio Cypher permette di eseguire interrogazioni complesse in maniera intuitiva, valorizzando le relazioni tra i dati come elemento centrale della modellazione.
+L'ampliamento del dataset fino a oltre cento nodi ha inoltre permesso di verificare il corretto funzionamento delle interrogazioni su un insieme di dati più ampio e realistico, evidenziando uno dei principali punti di forza dei database a grafo: la capacità di gestire ed esplorare relazioni complesse in maniera efficiente.

@@ -4,7 +4,10 @@
 MATCH (p:Persona {cognome:'DiCaprio'})
       -[:HA_RECITATO_IN]->
       (f:Film)
-RETURN f.titolo, f.anno;
+RETURN
+    f.titolo AS titolo_film,
+    f.anno AS anno_uscita
+ORDER BY f.anno;
 
 
 // QUERY 2
@@ -15,8 +18,9 @@ MATCH (regista:Persona {cognome:'Nolan'})
       (film:Film)
       <-[:HA_RECITATO_IN]-
       (attore:Persona)
-
-RETURN attore.nome,
-       attore.cognome,
-       COUNT(film) AS numero_film,
-       COLLECT(film.titolo) AS film_condivisi;
+RETURN
+    attore.nome AS nome,
+    attore.cognome AS cognome,
+    COUNT(film) AS numero_film,
+    COLLECT(film.titolo) AS film_condivisi
+ORDER BY numero_film DESC, cognome;
