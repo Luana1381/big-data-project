@@ -122,6 +122,7 @@ La cartella `graph_film` contiene i seguenti file:
 - `graph.cypher` → creazione e popolamento del Knowledge Graph;
 - `queries.cypher` → implementazione delle query richieste dalla traccia;
 - `README.md` → documentazione del progetto;
+- `schema_knowledge_graph_neo4j.png` → struttura concettuale del Knowledge Graph implementato mediante Neo4j;
 - `output_query/query1_film_dicaprio.csv` → risultato della prima interrogazione;
 - `output_query/query2_collaboratori_nolan.csv` → risultato della seconda interrogazione.
 

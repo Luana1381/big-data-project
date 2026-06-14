@@ -109,6 +109,7 @@ La cartella `elasticsearch_eventi` contiene i seguenti file:
 - `populate_large_dataset.py` → genera e inserisce il dataset esteso composto da 80 eventi;
 - `python_queries.py` → esegue le query previste tramite Python;
 - `export_query_results.py` → esporta i risultati delle query in formato CSV;
+- `schema_documentale_elasticsearch.png` → struttura del documento JSON utilizzato nell'indice Elasticsearch;
 - `README.md` → documentazione della traccia.
 
 La cartella contiene inoltre:
