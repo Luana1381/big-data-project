@@ -8,6 +8,7 @@ es = Elasticsearch(
 
 index_name = "eventi"
 
+
 # QUERY 1
 print("\n=== QUERY 1: Ricerca per titolo ===")
 
@@ -17,7 +18,8 @@ response = es.search(
         "match": {
             "titolo": "Python"
         }
-    }
+    },
+    size=20
 )
 
 for hit in response["hits"]["hits"]:
@@ -33,7 +35,8 @@ response = es.search(
         "term": {
             "categoria": "formazione"
         }
-    }
+    },
+    size=20
 )
 
 for hit in response["hits"]["hits"]:
@@ -47,9 +50,10 @@ response = es.search(
     index=index_name,
     query={
         "term": {
-            "tag": "database"
+            "tag": "database nosql"
         }
-    }
+    },
+    size=20
 )
 
 for hit in response["hits"]["hits"]:
@@ -65,7 +69,8 @@ response = es.search(
     aggs={
         "media_per_categoria": {
             "terms": {
-                "field": "categoria"
+                "field": "categoria",
+                "size": 20
             },
             "aggs": {
                 "media_partecipanti": {
