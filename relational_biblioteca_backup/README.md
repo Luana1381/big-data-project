@@ -4,7 +4,7 @@
 
 Questa parte del progetto realizza un database relazionale per la gestione di una biblioteca scolastica utilizzando **SQLite**.
 
-L'obiettivo è rappresentare e gestire le principali attività che caratterizzano il funzionamento di una biblioteca, consentendo di archiviare informazioni relative agli studenti, ai libri, alle copie fisiche disponibili, agli autori e ai prestiti effettuati.
+L'obiettivo è rappresentare e gestire le principali attività che caratterizzano il funzionamento di una biblioteca, consentendo di archiviare informazioni relative agli studenti, ai libri disponibili, agli autori e ai prestiti effettuati.
 
 Il sistema permette di monitorare quali libri sono presenti nella biblioteca, quali autori li hanno scritti e quali studenti hanno richiesto un prestito. Attraverso le relazioni tra le diverse tabelle è possibile effettuare interrogazioni utili alla gestione delle attività bibliotecarie e all'analisi dei dati registrati.
 
@@ -45,18 +45,6 @@ Per ogni libro vengono memorizzati dati bibliografici come titolo, anno di pubbl
 
 ---
 
-### COPIA
-
-La tabella COPIA rappresenta le singole copie fisiche dei libri presenti nella biblioteca.
-
-In un sistema reale, infatti, possono esistere più copie dello stesso libro. Per questo motivo ogni copia viene identificata mediante un proprio identificativo univoco (`id_copia`) ed è associata a un libro attraverso una chiave esterna.
-
-La tabella consente inoltre di memorizzare lo stato della copia, ad esempio disponibile o attualmente in prestito.
-
-Questa scelta progettuale permette di rappresentare in modo più realistico il funzionamento di una biblioteca e di tracciare con precisione quale specifica copia sia stata prestata a uno studente.
-
----
-
 ### AUTORE
 
 La tabella AUTORE raccoglie le informazioni sugli autori dei libri presenti nel catalogo.
@@ -82,9 +70,9 @@ Attraverso questa tabella è possibile rappresentare tutte le combinazioni tra l
 
 La tabella PRESTITO registra i prestiti effettuati dagli studenti.
 
-Ogni record collega uno studente a una specifica copia fisica di un libro e memorizza informazioni quali la data di inizio del prestito, la data prevista di restituzione e l'eventuale data effettiva di restituzione.
+Ogni record collega uno studente a un libro e consente di memorizzare le informazioni relative al prestito, come la data di inizio e la data prevista per la restituzione.
 
-L'utilizzo della tabella COPIA consente di gestire correttamente situazioni in cui la biblioteca possiede più copie dello stesso libro e di identificare con precisione quale esemplare sia stato prestato.
+Questa tabella rappresenta il collegamento operativo tra utenti e patrimonio librario.
 
 ---
 
@@ -93,8 +81,7 @@ L'utilizzo della tabella COPIA consente di gestire correttamente situazioni in c
 Le relazioni implementate nel database sono:
 
 - tra STUDENTE e PRESTITO, poiché uno studente può effettuare più prestiti;
-- tra COPIA e PRESTITO, poiché una copia può essere prestata più volte nel tempo;
-- tra LIBRO e COPIA, poiché uno stesso libro può essere presente in più copie fisiche;
+- tra LIBRO e PRESTITO, poiché un libro può essere prestato più volte nel tempo;
 - tra LIBRO e AUTORE tramite la tabella LIBRO_AUTORE, per rappresentare una relazione molti-a-molti.
 
 L'utilizzo delle chiavi esterne garantisce l'integrità referenziale del database, evitando la presenza di dati incoerenti o riferimenti non validi.
@@ -110,8 +97,7 @@ La cartella `relational_biblioteca` contiene i seguenti file:
 - `queries.sql` → raccolta delle query SQL richieste dalla traccia;
 - `biblioteca.py` → script Python utilizzato per eseguire le interrogazioni sul database;
 - `biblioteca.db` → database SQLite contenente i dati; 
-- `populate_large_dataset.py` → script Python per il popolamento esteso del database;
-- `export_query_results.py` → esportazione automatica dei risultati delle query in formato CSV.
+- `populate_large_dataset.py` → script Python per il popolamento esteso del database.
 
 
 ### Materiale aggiuntivo
@@ -119,7 +105,7 @@ La cartella `relational_biblioteca` contiene i seguenti file:
 Per documentare il lavoro svolto sono stati inoltre inclusi:
 
 - `diagramma_ER_biblioteca.png`, contenente il diagramma Entity-Relationship del database;
-- `output_query/query1_copie_in_prestito.csv`, contenente l'output della prima interrogazione;
+- `output_query/query1_libri_in_prestito.csv`, contenente l'output della prima interrogazione;
 - `output_query/query2_autori_piu_libri.csv`, contenente l'output della seconda interrogazione.
 
 In una fase iniziale il sistema è stato sviluppato utilizzando un dataset ridotto, utile per verificare la correttezza dello schema relazionale e delle query implementate. Successivamente il database è stato ampliato mediante uno script Python dedicato, generando un dataset più realistico composto da decine di studenti, libri, autori e prestiti, al fine di testare il corretto funzionamento delle interrogazioni su una quantità maggiore di dati.
@@ -132,7 +118,6 @@ Dopo la creazione delle tabelle, il database è stato popolato con dati di esemp
 
 - studenti;
 - libri;
-- copie fisiche dei libri;
 - autori;
 - relazioni tra libri e autori;
 - prestiti.
@@ -153,12 +138,11 @@ Il popolamento finale del database comprende:
 
 - 40 studenti;
 - 60 libri;
-- 229 copie fisiche;
 - 25 autori;
 - 90 associazioni libro-autore;
 - 120 prestiti.
 
-L'introduzione della tabella COPIA consente di simulare in modo più realistico il patrimonio librario della biblioteca, distinguendo tra l'opera bibliografica e le singole copie effettivamente disponibili per il prestito.
+Complessivamente il database contiene 335 record distribuiti tra le diverse tabelle.
 
 ---
 
@@ -166,15 +150,13 @@ L'introduzione della tabella COPIA consente di simulare in modo più realistico 
 
 Nel progetto sono state sviluppate le query richieste dalla traccia assegnata.
 
-### Query 1 - Copie attualmente in prestito
+### Query 1 - Libri attualmente in prestito
 
-La prima interrogazione consente di visualizzare tutte le copie che risultano attualmente in prestito, associando a ciascun prestito le informazioni relative alla copia, al libro e allo studente che lo ha richiesto.
+La prima interrogazione consente di visualizzare tutti i libri che risultano attualmente in prestito, associando a ciascun prestito le informazioni relative al libro e allo studente che lo ha richiesto.
 
-La query utilizza operazioni di JOIN tra le tabelle PRESTITO, COPIA, LIBRO e STUDENTE e seleziona esclusivamente i prestiti non ancora conclusi, ossia quelli per i quali la data di restituzione effettiva risulta assente.
+La query utilizza operazioni di JOIN tra le tabelle PRESTITO, LIBRO e STUDENTE e seleziona esclusivamente i prestiti non ancora conclusi, ossia quelli per i quali la data di restituzione effettiva risulta assente.
 
-L'esecuzione della query sul dataset esteso restituisce numerosi record e dimostra il corretto funzionamento delle relazioni tra le diverse entità del database.
-
-L'utilizzo della tabella COPIA consente inoltre di identificare con precisione quale specifico esemplare fisico sia stato prestato.
+L'esecuzione della query sul dataset esteso restituisce numerosi record e dimostra il corretto funzionamento delle relazioni tra le tabelle del database.
 
 ---
 

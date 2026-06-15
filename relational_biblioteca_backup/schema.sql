@@ -1,12 +1,3 @@
-PRAGMA foreign_keys = ON;
-
-DROP TABLE IF EXISTS PRESTITO;
-DROP TABLE IF EXISTS COPIA;
-DROP TABLE IF EXISTS LIBRO_AUTORE;
-DROP TABLE IF EXISTS LIBRO;
-DROP TABLE IF EXISTS AUTORE;
-DROP TABLE IF EXISTS STUDENTE;
-
 CREATE TABLE STUDENTE (
     matricola TEXT PRIMARY KEY,
     nome TEXT NOT NULL,
@@ -19,14 +10,8 @@ CREATE TABLE LIBRO (
     id_libro INTEGER PRIMARY KEY AUTOINCREMENT,
     titolo TEXT NOT NULL,
     anno_pubblicazione INTEGER NOT NULL,
-    editore TEXT NOT NULL
-);
-
-CREATE TABLE COPIA (
-    id_copia INTEGER PRIMARY KEY AUTOINCREMENT,
-    id_libro INTEGER NOT NULL,
-    stato TEXT NOT NULL,
-    FOREIGN KEY (id_libro) REFERENCES LIBRO(id_libro)
+    editore TEXT NOT NULL,
+    copie_disponibili INTEGER NOT NULL
 );
 
 CREATE TABLE AUTORE (
@@ -40,18 +25,27 @@ CREATE TABLE AUTORE (
 CREATE TABLE LIBRO_AUTORE (
     id_libro INTEGER NOT NULL,
     id_autore INTEGER NOT NULL,
+
     PRIMARY KEY (id_libro, id_autore),
-    FOREIGN KEY (id_libro) REFERENCES LIBRO(id_libro),
-    FOREIGN KEY (id_autore) REFERENCES AUTORE(id_autore)
+
+    FOREIGN KEY (id_libro)
+        REFERENCES LIBRO(id_libro),
+
+    FOREIGN KEY (id_autore)
+        REFERENCES AUTORE(id_autore)
 );
 
 CREATE TABLE PRESTITO (
     id_prestito INTEGER PRIMARY KEY AUTOINCREMENT,
     matricola TEXT NOT NULL,
-    id_copia INTEGER NOT NULL,
+    id_libro INTEGER NOT NULL,
     data_inizio TEXT NOT NULL,
     data_prevista_restituzione TEXT NOT NULL,
     data_effettiva_restituzione TEXT,
-    FOREIGN KEY (matricola) REFERENCES STUDENTE(matricola),
-    FOREIGN KEY (id_copia) REFERENCES COPIA(id_copia)
+
+    FOREIGN KEY (matricola)
+        REFERENCES STUDENTE(matricola),
+
+    FOREIGN KEY (id_libro)
+        REFERENCES LIBRO(id_libro)
 );

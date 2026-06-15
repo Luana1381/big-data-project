@@ -14,7 +14,6 @@ cursor.execute("PRAGMA foreign_keys = ON;")
 
 cursor.executescript("""
 DROP TABLE IF EXISTS PRESTITO;
-DROP TABLE IF EXISTS COPIA;
 DROP TABLE IF EXISTS LIBRO_AUTORE;
 DROP TABLE IF EXISTS AUTORE;
 DROP TABLE IF EXISTS LIBRO;
@@ -32,14 +31,8 @@ CREATE TABLE LIBRO (
     id_libro INTEGER PRIMARY KEY AUTOINCREMENT,
     titolo TEXT NOT NULL,
     anno_pubblicazione INTEGER NOT NULL,
-    editore TEXT NOT NULL
-);
-
-CREATE TABLE COPIA (
-    id_copia INTEGER PRIMARY KEY AUTOINCREMENT,
-    id_libro INTEGER NOT NULL,
-    stato TEXT NOT NULL,
-    FOREIGN KEY (id_libro) REFERENCES LIBRO(id_libro)
+    editore TEXT NOT NULL,
+    copie_disponibili INTEGER NOT NULL
 );
 
 CREATE TABLE AUTORE (
@@ -61,12 +54,12 @@ CREATE TABLE LIBRO_AUTORE (
 CREATE TABLE PRESTITO (
     id_prestito INTEGER PRIMARY KEY AUTOINCREMENT,
     matricola TEXT NOT NULL,
-    id_copia INTEGER NOT NULL,
+    id_libro INTEGER NOT NULL,
     data_inizio TEXT NOT NULL,
     data_prevista_restituzione TEXT NOT NULL,
     data_effettiva_restituzione TEXT,
     FOREIGN KEY (matricola) REFERENCES STUDENTE(matricola),
-    FOREIGN KEY (id_copia) REFERENCES COPIA(id_copia)
+    FOREIGN KEY (id_libro) REFERENCES LIBRO(id_libro)
 );
 """)
 
@@ -125,25 +118,13 @@ for i in range(1, 61):
     titolo = f"{random.choice(titoli_base)} - Volume {i}"
     anno = random.randint(1950, 2025)
     editore = random.choice(editori)
-    libri.append((titolo, anno, editore))
+    copie = random.randint(1, 8)
+    libri.append((titolo, anno, editore, copie))
 
 cursor.executemany("""
-INSERT INTO LIBRO (titolo, anno_pubblicazione, editore)
-VALUES (?, ?, ?);
+INSERT INTO LIBRO (titolo, anno_pubblicazione, editore, copie_disponibili)
+VALUES (?, ?, ?, ?);
 """, libri)
-
-copie = []
-
-for id_libro in range(1, 61):
-    numero_copie = random.randint(2, 6)
-
-    for _ in range(numero_copie):
-        copie.append((id_libro, "disponibile"))
-
-cursor.executemany("""
-INSERT INTO COPIA (id_libro, stato)
-VALUES (?, ?);
-""", copie)
 
 nazionalita = ["Italiana", "Britannica", "Francese", "Statunitense", "Spagnola", "Tedesca"]
 
@@ -181,37 +162,25 @@ INSERT INTO LIBRO_AUTORE (id_libro, id_autore)
 VALUES (?, ?);
 """, list(associazioni))
 
-cursor.execute("SELECT id_copia FROM COPIA;")
-id_copie_disponibili = [riga[0] for riga in cursor.fetchall()]
-
 prestiti = []
 data_base = date(2026, 1, 10)
 
-copie_attualmente_in_prestito = set()
-
 for i in range(1, 121):
     matricola = random.choice(studenti)[0]
+    id_libro = random.randint(1, 60)
 
     data_inizio = data_base + timedelta(days=random.randint(0, 160))
     data_prevista = data_inizio + timedelta(days=14)
 
     if random.random() < 0.65:
-        id_copia = random.choice(id_copie_disponibili)
         data_effettiva = data_inizio + timedelta(days=random.randint(7, 20))
         data_effettiva_str = data_effettiva.isoformat()
     else:
-        copie_ancora_disponibili = [
-            copia for copia in id_copie_disponibili
-            if copia not in copie_attualmente_in_prestito
-        ]
-
-        id_copia = random.choice(copie_ancora_disponibili)
-        copie_attualmente_in_prestito.add(id_copia)
         data_effettiva_str = None
 
     prestiti.append((
         matricola,
-        id_copia,
+        id_libro,
         data_inizio.isoformat(),
         data_prevista.isoformat(),
         data_effettiva_str
@@ -220,7 +189,7 @@ for i in range(1, 121):
 cursor.executemany("""
 INSERT INTO PRESTITO (
     matricola,
-    id_copia,
+    id_libro,
     data_inizio,
     data_prevista_restituzione,
     data_effettiva_restituzione
@@ -228,18 +197,11 @@ INSERT INTO PRESTITO (
 VALUES (?, ?, ?, ?, ?);
 """, prestiti)
 
-cursor.executemany("""
-UPDATE COPIA
-SET stato = 'in_prestito'
-WHERE id_copia = ?;
-""", [(id_copia,) for id_copia in copie_attualmente_in_prestito])
-
 conn.commit()
 
 print("Database biblioteca.db popolato correttamente.")
 print(f"Studenti inseriti: {len(studenti)}")
 print(f"Libri inseriti: {len(libri)}")
-print(f"Copie fisiche inserite: {len(copie)}")
 print(f"Autori inseriti: {len(autori)}")
 print(f"Associazioni libro-autore inserite: {len(associazioni)}")
 print(f"Prestiti inseriti: {len(prestiti)}")

@@ -28,3 +28,4 @@ if not es.indices.exists(index=index_name):
     print("Indice creato")
 else:
     print("Indice già esistente")
+    

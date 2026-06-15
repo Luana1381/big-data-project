@@ -5,9 +5,6 @@ cursor = conn.cursor()
 
 query1 = """
 SELECT
-    p.id_prestito,
-    c.id_copia,
-    c.stato,
     l.id_libro,
     l.titolo,
     l.anno_pubblicazione,
@@ -20,19 +17,16 @@ SELECT
     s.classe,
     s.indirizzo_studio
 FROM PRESTITO p
-JOIN COPIA c
-    ON p.id_copia = c.id_copia
 JOIN LIBRO l
-    ON c.id_libro = l.id_libro
+    ON p.id_libro = l.id_libro
 JOIN STUDENTE s
     ON p.matricola = s.matricola
-WHERE p.data_effettiva_restituzione IS NULL
-ORDER BY p.data_inizio;
+WHERE p.data_effettiva_restituzione IS NULL;
 """
 
 cursor.execute(query1)
 
-print("COPIE ATTUALMENTE IN PRESTITO\n")
+print("LIBRI ATTUALMENTE IN PRESTITO\n")
 
 for riga in cursor.fetchall():
     print(riga)

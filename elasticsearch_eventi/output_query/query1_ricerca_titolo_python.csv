@@ -1,15 +1,11 @@
 titolo,descrizione,categoria,data,luogo,organizzatore,tag,numero_partecipanti
-Laboratorio Python,Evento dedicato a Python con attività formative e divulgative.,orientamento,2026-03-22,Sala Conferenze,Corso di Big Data,"python, orientamento",201
-Seminario Python,Evento dedicato a Python con attività formative e divulgative.,summer school,2026-03-27,Aula Magna,Università del Salento,"python, summer_school",57
-Workshop Python,Evento dedicato a Python con attività formative e divulgative.,hackathon,2026-04-11,Biblioteca,Corso di Big Data,"python, hackathon",61
-Conferenza Python,Evento dedicato a Python con attività formative e divulgative.,networking,2026-06-10,Biblioteca,Dipartimento di Scienze Umane e Sociali,"python, networking",59
-Seminario Python,Evento dedicato a Python con attività formative e divulgative.,orientamento,2026-08-24,Biblioteca,Dipartimento di Scienze Umane e Sociali,"python, orientamento",241
-Evento Python,Evento dedicato a Python con attività formative e divulgative.,networking,2026-09-13,Aula Magna,Corso di Big Data,"python, networking",283
-Laboratorio Python,Evento dedicato a Python con attività formative e divulgative.,formazione,2026-09-23,Campus Ecotekne,Corso di Big Data,"python, formazione",267
-Seminario Python,Evento dedicato a Python con attività formative e divulgative.,benessere,2026-10-13,Aula Magna,Progetto Proben,"python, benessere",185
-Hackathon Python,Evento dedicato a Python con attività formative e divulgative.,orientamento,2026-11-27,Aula Vetrata,Dipartimento di Scienze Umane e Sociali,"python, orientamento",81
-Evento Python,Evento dedicato a Python con attività formative e divulgative.,seminario,2027-01-01,Studium 5,Progetto Proben,"python, seminario",277
-Career Day Python,Evento dedicato a Python con attività formative e divulgative.,networking,2026-01-21,Biblioteca,Progetto Proben,"python, networking",217
-Open Day Python,Evento dedicato a Python con attività formative e divulgative.,orientamento,2026-05-31,Aula Vetrata,Corso di Big Data,"python, orientamento",165
-Career Day Python,Evento dedicato a Python con attività formative e divulgative.,networking,2026-07-15,Aula Magna,Area Data Science,"python, networking",132
-Open Day Python,Evento dedicato a Python con attività formative e divulgative.,workshop,2026-12-22,Laboratorio informatico,Corso di Big Data,"python, workshop",128
+Seminario Python,Evento dedicato a Python con attività formative e divulgative.,benessere,2026-03-07,Aula Vetrata,Università del Salento,"python, benessere",224
+Workshop Python,Evento dedicato a Python con attività formative e divulgative.,hackathon,2026-04-21,Studium 5,Area Data Science,"python, hackathon",293
+Masterclass Python,Evento dedicato a Python con attività formative e divulgative.,career day,2026-05-01,Aula Vetrata,Progetto Proben,"python, career_day",258
+Incontro Python,Evento dedicato a Python con attività formative e divulgative.,career day,2026-05-31,Università del Salento,Area Data Science,"python, career_day",205
+Incontro Python,Evento dedicato a Python con attività formative e divulgative.,ricerca,2026-09-23,Università del Salento,Dipartimento di Scienze Umane e Sociali,"python, ricerca",38
+Hackathon Python,Evento dedicato a Python con attività formative e divulgative.,ricerca,2026-12-02,Aula Magna,Area Data Science,"python, ricerca",246
+Career Day Python,Evento dedicato a Python con attività formative e divulgative.,ricerca,2026-03-22,Laboratorio informatico,Corso di Big Data,"python, ricerca",109
+Open Day Python,Evento dedicato a Python con attività formative e divulgative.,ricerca,2026-04-01,Aula Vetrata,Università del Salento,"python, ricerca",272
+Open Day Python,Evento dedicato a Python con attività formative e divulgative.,networking,2026-07-25,Biblioteca,Università del Salento,"python, networking",83
+Open Day Python,Evento dedicato a Python con attività formative e divulgative.,orientamento,2026-10-03,Sala Conferenze,Dipartimento di Scienze Umane e Sociali,"python, orientamento",142

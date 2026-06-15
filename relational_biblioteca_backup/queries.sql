@@ -4,8 +4,6 @@ SELECT 'STUDENTE' AS tabella, COUNT(*) AS numero_record FROM STUDENTE
 UNION ALL
 SELECT 'LIBRO', COUNT(*) FROM LIBRO
 UNION ALL
-SELECT 'COPIA', COUNT(*) FROM COPIA
-UNION ALL
 SELECT 'AUTORE', COUNT(*) FROM AUTORE
 UNION ALL
 SELECT 'LIBRO_AUTORE', COUNT(*) FROM LIBRO_AUTORE
@@ -14,12 +12,9 @@ SELECT 'PRESTITO', COUNT(*) FROM PRESTITO;
 
 
 -- Query 1
--- Visualizzare le copie attualmente in prestito con le informazioni del libro e dello studente
+-- Visualizzare i libri attualmente in prestito con le informazioni dello studente
 
 SELECT
-    p.id_prestito,
-    c.id_copia,
-    c.stato,
     l.id_libro,
     l.titolo,
     l.anno_pubblicazione,
@@ -32,14 +27,11 @@ SELECT
     s.classe,
     s.indirizzo_studio
 FROM PRESTITO p
-JOIN COPIA c
-    ON p.id_copia = c.id_copia
 JOIN LIBRO l
-    ON c.id_libro = l.id_libro
+    ON p.id_libro = l.id_libro
 JOIN STUDENTE s
     ON p.matricola = s.matricola
-WHERE p.data_effettiva_restituzione IS NULL
-ORDER BY p.data_inizio;
+WHERE p.data_effettiva_restituzione IS NULL;
 
 
 -- Query 2

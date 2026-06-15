@@ -1,6 +1,14 @@
 import sqlite3
+import csv
+import os
 
-conn = sqlite3.connect("relational_biblioteca/biblioteca.db")
+
+DB_NAME = "relational_biblioteca/biblioteca.db"
+OUTPUT_DIR = "relational_biblioteca/output_query"
+
+os.makedirs(OUTPUT_DIR, exist_ok=True)
+
+conn = sqlite3.connect(DB_NAME)
 cursor = conn.cursor()
 
 query1 = """
@@ -30,13 +38,6 @@ WHERE p.data_effettiva_restituzione IS NULL
 ORDER BY p.data_inizio;
 """
 
-cursor.execute(query1)
-
-print("COPIE ATTUALMENTE IN PRESTITO\n")
-
-for riga in cursor.fetchall():
-    print(riga)
-
 query2 = """
 SELECT
     a.id_autore,
@@ -56,11 +57,24 @@ HAVING COUNT(la.id_libro) > 1
 ORDER BY numero_libri DESC;
 """
 
-cursor.execute(query2)
 
-print("\nAUTORI CON PIÙ DI UN LIBRO\n")
+def esporta_csv(nome_file, query):
+    cursor.execute(query)
 
-for riga in cursor.fetchall():
-    print(riga)
+    colonne = [descrizione[0] for descrizione in cursor.description]
+    righe = cursor.fetchall()
+
+    percorso_file = os.path.join(OUTPUT_DIR, nome_file)
+
+    with open(percorso_file, mode="w", newline="", encoding="utf-8") as file_csv:
+        writer = csv.writer(file_csv)
+        writer.writerow(colonne)
+        writer.writerows(righe)
+
+
+esporta_csv("query1_copie_in_prestito.csv", query1)
+esporta_csv("query2_autori_piu_libri.csv", query2)
 
 conn.close()
+
+print("Output delle query esportati correttamente nella cartella relational_biblioteca/output_query.")

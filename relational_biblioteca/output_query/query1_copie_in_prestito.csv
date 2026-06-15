@@ -1,0 +1,49 @@
+id_prestito,id_copia,stato,id_libro,titolo,anno_pubblicazione,editore,data_inizio,data_prevista_restituzione,matricola,nome,cognome,classe,indirizzo_studio
+63,175,in_prestito,46,Matematica e realtà - Volume 46,1958,Zanichelli,2026-01-17,2026-01-31,S008,Francesca,Mancini,1B,Liceo Linguistico
+42,75,in_prestito,18,Percorsi di storia - Volume 18,2012,Bompiani,2026-01-28,2026-02-11,S030,Sara,Colombo,2B,Istituto Tecnico Economico
+115,5,in_prestito,1,Percorsi di storia - Volume 1,1980,Einaudi,2026-02-02,2026-02-16,S024,Elena,Ricci,3B,Istituto Tecnico Informatico
+37,56,in_prestito,14,Introduzione alla letteratura - Volume 14,1950,Mondadori,2026-02-04,2026-02-18,S040,Valentina,Rossi,2A,Liceo Linguistico
+28,152,in_prestito,39,Matematica e realtà - Volume 39,1974,Laterza,2026-02-05,2026-02-19,S032,Simone,Rizzo,5A,Istituto Tecnico Economico
+110,114,in_prestito,29,Percorsi di storia - Volume 29,2009,Bompiani,2026-02-12,2026-02-26,S013,Anna,Lombardi,5A,Istituto Tecnico Economico
+45,166,in_prestito,43,Il viaggio della conoscenza - Volume 43,2024,Salani,2026-02-21,2026-03-07,S004,Giulia,Verdi,4A,Liceo Classico
+69,148,in_prestito,38,La biblioteca dei sogni - Volume 38,2021,Salani,2026-02-27,2026-03-13,S025,Simone,Romano,5A,Liceo Classico
+99,150,in_prestito,38,La biblioteca dei sogni - Volume 38,2021,Salani,2026-03-01,2026-03-15,S020,Francesca,Costa,2B,Liceo Linguistico
+88,128,in_prestito,33,Matematica e realtà - Volume 33,2002,Salani,2026-03-09,2026-03-23,S019,Camilla,Colombo,4B,Liceo Classico
+30,127,in_prestito,33,Matematica e realtà - Volume 33,2002,Salani,2026-03-15,2026-03-29,S004,Giulia,Verdi,4A,Liceo Classico
+38,42,in_prestito,10,Racconti del Novecento - Volume 10,2007,Mondadori,2026-03-18,2026-04-01,S014,Matteo,Moretti,4A,Liceo Scientifico
+44,19,in_prestito,4,Racconti del Novecento - Volume 4,1966,Feltrinelli,2026-03-19,2026-04-02,S010,Anna,De Luca,2A,Liceo Linguistico
+10,63,in_prestito,16,Storie di scuola - Volume 16,1954,Rizzoli,2026-03-22,2026-04-05,S006,Alessandro,Lombardi,2B,Liceo Classico
+27,33,in_prestito,7,Pensiero critico - Volume 7,2004,Bompiani,2026-03-25,2026-04-08,S036,Federico,Colombo,4B,Liceo Scientifico
+107,10,in_prestito,2,Introduzione alla letteratura - Volume 2,2022,Mondadori,2026-03-30,2026-04-13,S003,Anna,Moretti,2B,Liceo Scientifico
+9,215,in_prestito,56,La città invisibile - Volume 56,2022,Mondadori,2026-04-02,2026-04-16,S018,Matteo,Ricci,5A,Liceo Scientifico
+109,55,in_prestito,14,Introduzione alla letteratura - Volume 14,1950,Mondadori,2026-04-03,2026-04-17,S019,Camilla,Colombo,4B,Liceo Classico
+85,162,in_prestito,42,La biblioteca dei sogni - Volume 42,1990,Einaudi,2026-04-04,2026-04-18,S006,Alessandro,Lombardi,2B,Liceo Classico
+71,147,in_prestito,38,La biblioteca dei sogni - Volume 38,2021,Salani,2026-04-07,2026-04-21,S027,Riccardo,Mancini,5B,Istituto Tecnico Informatico
+108,27,in_prestito,5,Fondamenti di informatica - Volume 5,2010,Adelphi,2026-04-13,2026-04-27,S038,Sara,Conti,3A,Istituto Tecnico Economico
+78,192,in_prestito,49,Pensiero critico - Volume 49,1955,Zanichelli,2026-04-18,2026-05-02,S025,Simone,Romano,5A,Liceo Classico
+114,184,in_prestito,47,Storie di scuola - Volume 47,1980,Garzanti,2026-04-21,2026-05-05,S015,Marco,Marino,5A,Liceo Scientifico
+56,156,in_prestito,39,Matematica e realtà - Volume 39,1974,Laterza,2026-04-22,2026-05-06,S019,Camilla,Colombo,4B,Liceo Classico
+47,141,in_prestito,37,La città invisibile - Volume 37,1986,Garzanti,2026-04-23,2026-05-07,S020,Francesca,Costa,2B,Liceo Linguistico
+58,1,in_prestito,1,Percorsi di storia - Volume 1,1980,Einaudi,2026-04-23,2026-05-07,S008,Francesca,Mancini,1B,Liceo Linguistico
+82,45,in_prestito,11,Introduzione alla letteratura - Volume 11,1978,Mondadori,2026-04-24,2026-05-08,S010,Anna,De Luca,2A,Liceo Linguistico
+98,136,in_prestito,36,Il viaggio della conoscenza - Volume 36,1999,Laterza,2026-04-28,2026-05-12,S020,Francesca,Costa,2B,Liceo Linguistico
+62,139,in_prestito,36,Il viaggio della conoscenza - Volume 36,1999,Laterza,2026-05-02,2026-05-16,S019,Camilla,Colombo,4B,Liceo Classico
+40,129,in_prestito,34,La città invisibile - Volume 34,1977,Garzanti,2026-05-05,2026-05-19,S027,Riccardo,Mancini,5B,Istituto Tecnico Informatico
+96,208,in_prestito,54,Matematica e realtà - Volume 54,1988,Salani,2026-05-09,2026-05-23,S001,Luca,Rossi,5A,Liceo Classico
+83,80,in_prestito,20,Pensiero critico - Volume 20,2010,Bompiani,2026-05-10,2026-05-24,S005,Federico,Barbieri,1A,Istituto Tecnico Economico
+112,97,in_prestito,24,La città invisibile - Volume 24,1956,Mondadori,2026-05-13,2026-05-27,S017,Simone,Conti,3A,Liceo Linguistico
+12,47,in_prestito,11,Introduzione alla letteratura - Volume 11,1978,Mondadori,2026-05-16,2026-05-30,S002,Martina,Romano,2A,Istituto Tecnico Economico
+79,36,in_prestito,8,Racconti del Novecento - Volume 8,1975,Laterza,2026-05-16,2026-05-30,S010,Anna,De Luca,2A,Liceo Linguistico
+111,52,in_prestito,13,Racconti del Novecento - Volume 13,1979,Zanichelli,2026-05-18,2026-06-01,S034,Elena,Esposito,5A,Istituto Tecnico Informatico
+67,118,in_prestito,30,Storie di scuola - Volume 30,2006,Adelphi,2026-05-20,2026-06-03,S019,Camilla,Colombo,4B,Liceo Classico
+52,81,in_prestito,20,Pensiero critico - Volume 20,2010,Bompiani,2026-05-22,2026-06-05,S031,Anna,De Luca,2B,Istituto Tecnico Economico
+92,54,in_prestito,14,Introduzione alla letteratura - Volume 14,1950,Mondadori,2026-06-03,2026-06-17,S027,Riccardo,Mancini,5B,Istituto Tecnico Informatico
+73,143,in_prestito,37,La città invisibile - Volume 37,1986,Garzanti,2026-06-07,2026-06-21,S038,Sara,Conti,3A,Istituto Tecnico Economico
+14,73,in_prestito,18,Percorsi di storia - Volume 18,2012,Bompiani,2026-06-11,2026-06-25,S018,Matteo,Ricci,5A,Liceo Scientifico
+34,60,in_prestito,15,La biblioteca dei sogni - Volume 15,1957,Bompiani,2026-06-11,2026-06-25,S039,Federico,Rossi,5B,Liceo Linguistico
+2,204,in_prestito,53,Introduzione alla letteratura - Volume 53,1983,Garzanti,2026-06-12,2026-06-26,S020,Francesca,Costa,2B,Liceo Linguistico
+103,89,in_prestito,22,Storie di scuola - Volume 22,1962,Garzanti,2026-06-14,2026-06-28,S004,Giulia,Verdi,4A,Liceo Classico
+104,68,in_prestito,17,Storie di scuola - Volume 17,2015,Bompiani,2026-06-14,2026-06-28,S015,Marco,Marino,5A,Liceo Scientifico
+7,138,in_prestito,36,Il viaggio della conoscenza - Volume 36,1999,Laterza,2026-06-16,2026-06-30,S018,Matteo,Ricci,5A,Liceo Scientifico
+60,179,in_prestito,47,Storie di scuola - Volume 47,1980,Garzanti,2026-06-18,2026-07-02,S024,Elena,Ricci,3B,Istituto Tecnico Informatico
+84,196,in_prestito,50,Storie di scuola - Volume 50,2003,Zanichelli,2026-06-18,2026-07-02,S022,Martina,Bianchi,1B,Istituto Tecnico Informatico

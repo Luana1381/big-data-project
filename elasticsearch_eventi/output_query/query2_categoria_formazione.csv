@@ -1,7 +1,5 @@
 titolo,descrizione,categoria,data,luogo,organizzatore,tag,numero_partecipanti
-Open Day Benessere Universitario,Evento dedicato a Benessere Universitario con attività formative e divulgative.,formazione,2026-01-26,Aula Magna,Corso di Big Data,"benessere universitario, formazione",234
-Conferenza Machine Learning,Evento dedicato a Machine Learning con attività formative e divulgative.,formazione,2026-02-05,Università del Salento,Università del Salento,"machine learning, formazione",277
-Open Day Innovazione Digitale,Evento dedicato a Innovazione Digitale con attività formative e divulgative.,formazione,2026-03-07,Biblioteca,Area Data Science,"innovazione digitale, formazione",95
-Laboratorio Data Science,Evento dedicato a Data Science con attività formative e divulgative.,formazione,2026-05-21,Sala Conferenze,Progetto Proben,"data science, formazione",205
-Laboratorio Python,Evento dedicato a Python con attività formative e divulgative.,formazione,2026-09-23,Campus Ecotekne,Corso di Big Data,"python, formazione",267
-Conferenza Innovazione Digitale,Evento dedicato a Innovazione Digitale con attività formative e divulgative.,formazione,2026-10-18,Aula Magna,Università del Salento,"innovazione digitale, formazione",79
+Hackathon Analisi dei Dati,Evento dedicato a Analisi dei Dati con attività formative e divulgative.,formazione,2026-02-10,Laboratorio informatico,Università del Salento,"analisi dei dati, formazione",214
+Conferenza Database NoSQL,Evento dedicato a Database NoSQL con attività formative e divulgative.,formazione,2026-07-10,Sala Conferenze,Università del Salento,"database nosql, formazione",203
+Masterclass Analisi dei Dati,Evento dedicato a Analisi dei Dati con attività formative e divulgative.,formazione,2026-08-09,Campus Ecotekne,Area Data Science,"analisi dei dati, formazione",256
+Conferenza Analisi dei Dati,Evento dedicato a Analisi dei Dati con attività formative e divulgative.,formazione,2026-09-28,Aula Magna,Corso di Big Data,"analisi dei dati, formazione",65
