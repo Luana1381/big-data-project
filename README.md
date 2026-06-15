@@ -61,7 +61,7 @@ relational_biblioteca
 
 La prima traccia prevede la realizzazione di un database relazionale per la gestione di una biblioteca scolastica.
 
-Il sistema consente di rappresentare studenti, libri, autori e prestiti attraverso tabelle collegate mediante chiavi primarie e chiavi esterne. La progettazione segue i principi del modello relazionale e permette di gestire correttamente le associazioni tra le entità coinvolte.
+Il sistema consente di rappresentare studenti, libri, copie fisiche, autori e prestiti attraverso tabelle collegate mediante chiavi primarie e chiavi esterne. La progettazione segue i principi del modello relazionale e permette di gestire correttamente le associazioni tra le entità coinvolte.
 
 Particolare attenzione è stata dedicata alla relazione molti-a-molti tra libri e autori, realizzata mediante la tabella associativa `LIBRO_AUTORE`.
 
@@ -73,15 +73,17 @@ Il database relazionale contiene le seguenti tabelle:
 
 - `STUDENTE`;
 - `LIBRO`;
+- `COPIA`;
 - `AUTORE`;
 - `LIBRO_AUTORE`;
 - `PRESTITO`.
 
 La tabella `STUDENTE` contiene le informazioni sugli studenti che possono prendere in prestito libri.  
 La tabella `LIBRO` contiene le informazioni sui libri presenti nella biblioteca.  
+La tabella `COPIA` rappresenta le singole copie fisiche dei libri presenti nella biblioteca. Ogni copia è identificata da un proprio identificativo univoco ed è associata a un libro tramite una chiave esterna. Questa scelta progettuale consente di distinguere tra l'opera bibliografica e i singoli esemplari disponibili per il prestito.
 La tabella `AUTORE` contiene i dati sugli autori.  
 La tabella `LIBRO_AUTORE` rappresenta la relazione molti-a-molti tra libri e autori.  
-La tabella `PRESTITO` registra i prestiti effettuati dagli studenti.
+La tabella `PRESTITO` registra i prestiti effettuati dagli studenti e collega ciascun utente a una specifica copia fisica del libro richiesto.
 
 ---
 
@@ -95,11 +97,12 @@ Il dataset finale contiene:
 
 - 40 studenti;
 - 60 libri;
+- 229 copie fisiche;
 - 25 autori;
 - 90 associazioni libro-autore;
 - 120 prestiti.
 
-Complessivamente, la traccia relazionale contiene **335 record** distribuiti tra le diverse tabelle.
+Complessivamente il database relazionale contiene 564 record distribuiti tra le diverse tabelle.
 
 ---
 
@@ -107,7 +110,7 @@ Complessivamente, la traccia relazionale contiene **335 record** distribuiti tra
 
 Sono state implementate due query principali:
 
-1. visualizzazione dei libri attualmente in prestito con le informazioni dello studente;
+1. visualizzazione delle copie attualmente in prestito con le informazioni della copia, del libro e dello studente;
 2. individuazione degli autori che hanno scritto più di un libro.
 
 Gli output delle query sono stati esportati e inseriti nella cartella del progetto.
@@ -125,6 +128,7 @@ La cartella `relational_biblioteca` contiene:
 - `biblioteca.py` → script Python per l'esecuzione delle query;
 - `biblioteca.db` → database SQLite;
 - `diagramma_ER_biblioteca.png` → diagramma ER del database;
+- `export_query_results.py` → esportazione automatica degli output delle query in formato CSV;
 - `output_query/` → cartella contenente gli output delle query.
 
 ---
@@ -321,7 +325,7 @@ Il database documentale con Elasticsearch è adatto alla gestione di dati semi-s
 
 Il progetto ha permesso di sperimentare tre differenti approcci alla progettazione e alla gestione dei dati.
 
-La prima traccia ha evidenziato l'importanza del modello relazionale, delle chiavi e dei vincoli di integrità.  
+La prima traccia ha evidenziato l'importanza del modello relazionale, delle chiavi, dei vincoli di integrità e della corretta modellazione delle entità, distinguendo tra opere bibliografiche e copie fisiche disponibili per il prestito.  
 La seconda traccia ha mostrato la capacità dei grafi di rappresentare relazioni complesse in modo naturale.  
 La terza traccia ha dimostrato l'efficacia dei database documentali nella gestione di informazioni testuali, flessibili e interrogabili tramite ricerche avanzate.
 
